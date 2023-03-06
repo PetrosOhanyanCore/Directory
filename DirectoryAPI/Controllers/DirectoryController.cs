@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DirectoryAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class DirectoryController : ControllerBase
     {
@@ -16,12 +16,19 @@ namespace DirectoryAPI.Controllers
         {
             _directory = directory;
         }
-        // GET: api/<DirectoryController>
-        [HttpGet]
+
+        [HttpGet(Name = "GetCurrentDirectoryContent")]        
         public async Task<Response> GetCurrentDirectoryContent(string path)
         {
             var result = await _directory.GetCurrentDirectoryContent(path);
             return result;
+        }
+
+        [HttpGet(Name = "GetCurrentDirectory")]
+        public Task<string> GetCurrentDirectory()
+        {
+            var result = _directory.GetCurrentDirectory();
+            return Task.FromResult(result);
         }
 
         // GET api/<DirectoryController>/5

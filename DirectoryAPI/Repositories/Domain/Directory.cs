@@ -15,7 +15,7 @@ namespace DirectoryAPI.Repositories.Domain
 
         public string GetCurrentDirectory()
         {
-            var result = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location);
+            var result = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile); /*Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location);*/
             return result;
         }
 
@@ -43,6 +43,7 @@ namespace DirectoryAPI.Repositories.Domain
                     newFile.Path = filePath;
                     result.Files.Add(newFile);
                 }
+
                 foreach (var folderPath in folderPaths)
                 {
                     var newFolder = new Models.Folder();
