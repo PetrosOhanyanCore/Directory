@@ -1,4 +1,5 @@
-﻿using DirectoryAPI.Repositories.InterFaces;
+﻿using DirectoryAPI.Models;
+using DirectoryAPI.Repositories.InterFaces;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,7 +18,7 @@ namespace DirectoryAPI.Controllers
         }
         // GET: api/<DirectoryController>
         [HttpGet]
-        public async Task<List<string>> GetCurrentDirectoryContent(string path)
+        public async Task<Response> GetCurrentDirectoryContent(string path)
         {
             var result = await _directory.GetCurrentDirectoryContent(path);
             return result;
