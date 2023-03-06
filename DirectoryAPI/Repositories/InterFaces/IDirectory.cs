@@ -12,7 +12,7 @@
         /// Returns a list with information about the contents of the current directory
         /// </summary>
         /// <returns>Information about the contents</returns>
-        Task<List<FileInfo>> GetCurrentDirectoryContent();
+        Task<List<string>> GetCurrentDirectoryContent(string path);
 
         /// <summary>
         /// Changes the current directory
