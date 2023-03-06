@@ -16,10 +16,10 @@ namespace DirectoryAPI.Repositories.InterFaces
         /// <returns>Information about the contents</returns>
         Task<Response> GetCurrentDirectoryContent(string path);
 
-        /// <summary>
-        /// Changes the current directory
-        /// </summary>
-        /// <param name="newDirectory"></param>
-        void ChangeCurrentDirectory(string newDirectory);
+        ///// <summary>
+        ///// Changes the current directory
+        ///// </summary>
+        ///// <param name="newDirectory"></param>
+        //void ChangeCurrentDirectory(string newDirectory);
     }
 }
