@@ -15,5 +15,12 @@ namespace Directory.Services
         /// </summary>
         /// <returns>Information about the contents</returns>
         Task<Response> GetCurrentDirectoryContent(string path);
+
+        /// <summary>
+        /// Get the Previous path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>string: Previous path</returns>
+        Task<string> GetPrevious(string path);
     }
 }

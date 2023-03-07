@@ -15,7 +15,7 @@ namespace DirectoryAPI.Repositories.Domain
 
         public string GetCurrentDirectory()
         {
-            var result = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile); /*Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location);*/
+            var result = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             return result;
         }
 
@@ -67,6 +67,12 @@ namespace DirectoryAPI.Repositories.Domain
                 response.Data = null;
                 return Task.FromResult(response);
             }
+        }
+
+        public Task<string> GetPrevious(string path)
+        {
+            string parent = Path.GetDirectoryName(path);
+            return Task.FromResult(parent);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace DirectoryAPI.Controllers
             _directory = directory;
         }
 
-        [HttpGet(Name = "GetCurrentDirectoryContent")]        
+        [HttpGet(Name = "GetCurrentDirectoryContent")]
         public async Task<Response> GetCurrentDirectoryContent(string path)
         {
             var result = await _directory.GetCurrentDirectoryContent(path);
@@ -29,6 +29,13 @@ namespace DirectoryAPI.Controllers
         {
             var result = _directory.GetCurrentDirectory();
             return Task.FromResult(result);
-        }    
+        }
+
+        [HttpGet(Name = "GetPrevious")]
+        public async Task<string> GetPrevious(string path)
+        {
+            var result = await _directory.GetPrevious(path);
+            return result;
+        }
     }
 }

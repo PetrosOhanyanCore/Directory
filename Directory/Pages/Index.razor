@@ -5,25 +5,37 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
-
+<div>
+    <MudTextField T="string"
+                  @bind-Value="@_currentDirectory"
+                  Label="Current Directory"
+                  Variant="Variant.Text"
+                  Immediate="true"
+                  ReadOnly="true"
+                  DebounceInterval="100"
+                  Style="float:left">
+    </MudTextField>
+    <MudIconButton Icon="@Icons.Material.Filled.NavigateBefore"
+                   Color="Color.Primary"
+                   OnClick="()=> GoBack(_currentDirectory)"
+                   Style="float:left" />
+</div>
 @*<SurveyPrompt Title="How is Blazor working for you?" />*@
 
 <div>
-    <MudTable Items="response.data.folders" Hover="true" Striped="true" Dense="true" Class="mb-2">
+    <MudTable Items="response.data.folders" Hover="true" Striped="true" Dense="true" Class="mb-2" Style="float:left">
         <HeaderContent>
-            <MudTh>Directory</MudTh>
+            <MudTh Style="color:red">Directory</MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd DataLabel="Name">@context.name</MudTd>
+            <MudTd DataLabel="Name" @onclick="() => GetContent(context.path)">@context.name</MudTd>
         </RowTemplate>
     </MudTable>
 
-    <MudTable Items="response.data.files" Hover="true" Striped="true" Dense="true" Class="mb-2">
+    <MudTable Items="response.data.files" Hover="true" Striped="true" Dense="true" Class="mb-2" Style="float:left">
         <HeaderContent>
-            <MudTh>Files</MudTh>
+            <MudTh Style="color:red">Files</MudTh>
         </HeaderContent>
         <RowTemplate>
             <MudTd DataLabel="Name">@context.name</MudTd>
@@ -45,6 +57,17 @@ Welcome to your new app.
     {
         response = new();
         response = await _directoryService.GetCurrentDirectoryContent(path);
+        _currentDirectory = path;
+    }
+
+    async Task GoBack(string path)
+    {
+        response = new();
+
+        string parent = await _directoryService.GetPrevious(path);
+
+        response = await _directoryService.GetCurrentDirectoryContent(parent);
+        _currentDirectory = parent;
     }
 
     async Task GetCurrentDirectory()
@@ -52,12 +75,11 @@ Welcome to your new app.
         response.data.folders = new List<Folder>();
         response.data.files = new List<File>();
         _currentDirectory = await _directoryService.GetCurrentDirectory();
-        response = await _directoryService.GetCurrentDirectoryContent(_currentDirectory);        
+        response = await _directoryService.GetCurrentDirectoryContent(_currentDirectory);
     }
 
     protected override async Task OnInitializedAsync()
     {
-        
         await GetCurrentDirectory();
     }
 

@@ -43,5 +43,19 @@ namespace Directory.Services
 
             return result;
         }
+
+        public async Task<string> GetPrevious(string path)
+        {
+            var response = await _httpClient.SendAsync(new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"{_baseUrl}/GetPrevious?path={path}")
+            });
+
+            var responseBody = await response.Content.ReadAsStringAsync();
+           
+
+            return responseBody;
+        }
     }
 }
