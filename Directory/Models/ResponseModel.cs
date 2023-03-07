@@ -1,6 +1,6 @@
-﻿namespace DirectoryAPI.Models
+﻿namespace Directory.Models
 {
-    public class Response
+    public class ResponseModel
     {
         public bool Status { get; set; }
         public string? Message { get; set; }
