@@ -2,8 +2,8 @@
 {
     public class File
     {
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public string Size { get; set; }
+        public string name { get; set; }
+        public string path { get; set; }
+        public string size { get; set; }
     }
 }

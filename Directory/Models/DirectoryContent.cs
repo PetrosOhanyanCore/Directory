@@ -2,7 +2,7 @@
 {
     public class DirectoryContent
     {
-        public List<File> Files { get; set; } = new List<File>();
-        public List<Folder> Folders { get; set; } = new List<Folder>();
+        public List<File> files { get; set; } = new List<File>();
+        public List<Folder> folders { get; set; } = new List<Folder>();
     }
 }

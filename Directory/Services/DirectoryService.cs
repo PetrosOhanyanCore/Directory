@@ -39,7 +39,7 @@ namespace Directory.Services
             });
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<Response>(responseBody);
+            Response result = JsonSerializer.Deserialize<Response>(responseBody);
 
             return result;
         }

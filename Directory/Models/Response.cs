@@ -2,8 +2,8 @@
 {
     public class Response
     {
-        public bool Status { get; set; }
-        public string Message { get; set; }
-        public DirectoryContent Data { get; set; } = new DirectoryContent();
+        public bool status { get; set; }
+        public string message { get; set; }
+        public DirectoryContent data { get; set; } = new DirectoryContent();
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Folder
     {
-        public string Name { get; set; }
-        public string Path { get; set; }
+        public string name { get; set; }
+        public string path { get; set; }
     }
 }
