@@ -30,7 +30,7 @@ namespace Directory.Services
             return responseBody;
         }
 
-        public async Task<ResponseModel> GetCurrentDirectoryContent(string path)
+        public async Task<Response> GetCurrentDirectoryContent(string path)
         {
             var response = await _httpClient.SendAsync(new HttpRequestMessage
             {
@@ -39,7 +39,7 @@ namespace Directory.Services
             });
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<ResponseModel>(responseBody);
+            var result = JsonSerializer.Deserialize<Response>(responseBody);
 
             return result;
         }

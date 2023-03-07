@@ -14,6 +14,6 @@ namespace Directory.Services
         /// Returns a list with information about the contents of the current directory
         /// </summary>
         /// <returns>Information about the contents</returns>
-        Task<ResponseModel> GetCurrentDirectoryContent(string path);
+        Task<Response> GetCurrentDirectoryContent(string path);
     }
 }

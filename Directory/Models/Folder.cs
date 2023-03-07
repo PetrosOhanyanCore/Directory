@@ -1,4 +1,4 @@
-﻿namespace DirectoryAPI.Models
+﻿namespace Directory.Models
 {
     public class Folder
     {

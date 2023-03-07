@@ -1,8 +1,9 @@
-﻿namespace DirectoryAPI.Models
+﻿namespace Directory.Models
 {
-    public class Folder
+    public class File
     {
         public string Name { get; set; }
         public string Path { get; set; }
+        public string Size { get; set; }
     }
 }

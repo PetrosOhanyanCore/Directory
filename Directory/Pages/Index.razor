@@ -12,7 +12,7 @@ Welcome to your new app.
 @*<SurveyPrompt Title="How is Blazor working for you?" />*@
 
 <div>
-    <MudTable Items="response.Data?.Folders" Hover="true" Striped="true" Dense="true" Class="mb-2">
+    <MudTable Items="response.Data.Folders" Hover="true" Striped="true" Dense="true" Class="mb-2">
         <HeaderContent>
             <MudTh>Directory</MudTh>
         </HeaderContent>
@@ -21,7 +21,7 @@ Welcome to your new app.
         </RowTemplate>
     </MudTable>
 
-    <MudTable Items="response.Data?.Files" Hover="true" Striped="true" Dense="true" Class="mb-2">
+    <MudTable Items="response.Data.Files" Hover="true" Striped="true" Dense="true" Class="mb-2">
         <HeaderContent>
             <MudTh>Files</MudTh>
         </HeaderContent>
@@ -34,21 +34,11 @@ Welcome to your new app.
 
 @code {
     List<string> list = new();
-    ResponseModel response = new ResponseModel();
-    List<FileModel>? Files = new List<FileModel>();
-    List<FolderModel>? Folders = new List<FolderModel>();
+    Response response = new Response();
+    List<File> Files = new List<File>();
+    List<Folder> Folders = new List<Folder>();
 
-    private string? _currentDirectory;
-
-    public Index()
-    {
-        response.Data.Folders = new List<FolderModel>();
-        response.Data.Files = new List<FileModel>();
-    }
-
-
-    
-
+    private string _currentDirectory;
 
 
     async Task GetContent(string path)
@@ -59,8 +49,8 @@ Welcome to your new app.
 
     async Task GetCurrentDirectory()
     {
-        response.Data.Folders = new List<FolderModel>();
-        response.Data.Files = new List<FileModel>();
+        response.Data.Folders = new List<Folder>();
+        response.Data.Files = new List<File>();
         _currentDirectory = await _directoryService.GetCurrentDirectory();
         response = await _directoryService.GetCurrentDirectoryContent(_currentDirectory);
     }
