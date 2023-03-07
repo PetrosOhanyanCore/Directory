@@ -8,11 +8,6 @@ namespace DirectoryAPI.Repositories.Domain
 {
     public class Directory : IDirectory
     {
-        //public void ChangeCurrentDirectory(string newDirectory)
-        //{
-        //    Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location);
-        //}
-
         public string GetCurrentDirectory()
         {
             var result = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);

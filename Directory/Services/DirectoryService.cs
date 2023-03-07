@@ -25,7 +25,6 @@ namespace Directory.Services
             });
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            //var result = JsonSerializer.Deserialize<string>(responseBody);
 
             return responseBody;
         }

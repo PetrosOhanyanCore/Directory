@@ -21,7 +21,6 @@
                    OnClick="()=> GoBack(_currentDirectory)"
                    Style="float:left" />
 </div>
-@*<SurveyPrompt Title="How is Blazor working for you?" />*@
 
 <div>
     <MudTable Items="response.data.folders" Hover="true" Striped="true" Dense="true" Class="mb-2" Style="float:left">
@@ -82,5 +81,4 @@
     {
         await GetCurrentDirectory();
     }
-
 }
