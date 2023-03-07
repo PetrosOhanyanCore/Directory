@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using Directory.Models;
+@using Directory.Services;
+@inject IDirectoryService _directoryService;
 
 <PageTitle>Index</PageTitle>
 
@@ -8,27 +11,64 @@ Welcome to your new app.
 
 @*<SurveyPrompt Title="How is Blazor working for you?" />*@
 
-<MudTable Items="list" Hover="true" Striped="true" Dense="true" Class="mb-2">
-    <HeadContent>
-        <MudTh>Directory</MudTh>
-    </HeadContent>
-    <RowTemplate>
-        <MudTd DataLabel="Folder">@context.Name</MudTd>
-    </RowTemplate>
-</MudTable>
+<div>
+    <MudTable Items="response.Data?.Folders" Hover="true" Striped="true" Dense="true" Class="mb-2">
+        <HeaderContent>
+            <MudTh>Directory</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+        </RowTemplate>
+    </MudTable>
 
-<MudTable Items="list" Hover="true" Striped="true" Dense="true" Class="mb-2">
-    <HeadContent>
-        <MudTh>Directory</MudTh>
-    </HeadContent>
-    <RowTemplate>
-        <MudTd DataLabel="Folder">@context.Name</MudTd>
-        <MudTd DataLabel="Folder">@context.Size</MudTd>
-    </RowTemplate>
-</MudTable>
-
+    <MudTable Items="response.Data?.Files" Hover="true" Striped="true" Dense="true" Class="mb-2">
+        <HeaderContent>
+            <MudTh>Files</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Size">@context.Size</MudTd>
+        </RowTemplate>
+    </MudTable>
+</div>
 
 @code {
-    List<string> list = new List<string>();
+    List<string> list = new();
+    ResponseModel response = new ResponseModel();
+    List<FileModel>? Files = new List<FileModel>();
+    List<FolderModel>? Folders = new List<FolderModel>();
+
+    private string? _currentDirectory;
+
+    public Index()
+    {
+        response.Data.Folders = new List<FolderModel>();
+        response.Data.Files = new List<FileModel>();
+    }
+
+
+    
+
+
+
+    async Task GetContent(string path)
+    {
+        response = new();
+        response = await _directoryService.GetCurrentDirectoryContent(path);
+    }
+
+    async Task GetCurrentDirectory()
+    {
+        response.Data.Folders = new List<FolderModel>();
+        response.Data.Files = new List<FileModel>();
+        _currentDirectory = await _directoryService.GetCurrentDirectory();
+        response = await _directoryService.GetCurrentDirectoryContent(_currentDirectory);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        await GetCurrentDirectory();
+    }
 
 }

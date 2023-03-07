@@ -29,31 +29,6 @@ namespace DirectoryAPI.Controllers
         {
             var result = _directory.GetCurrentDirectory();
             return Task.FromResult(result);
-        }
-
-        // GET api/<DirectoryController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<DirectoryController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<DirectoryController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<DirectoryController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        }    
     }
 }

@@ -10,6 +10,10 @@ builder.Services.AddScoped<DirectoryAPI.Repositories.InterFaces.IDirectory, Dire
 var app = builder.Build();
 
 
+app.UseCors(options =>
+            options.WithOrigins("*").
+            AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
